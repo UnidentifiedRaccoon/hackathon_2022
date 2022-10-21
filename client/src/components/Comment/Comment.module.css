@@ -1,0 +1,21 @@
+.comment {
+    margin-bottom: 20px;
+}
+
+.comment__header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.comment__text {
+    line-height: 1.35rem;
+    margin-top: 0;
+    font-size: 0.85rem;
+}
+
+.comment__cross {
+    width: 20px;
+    height: 20px;
+}

@@ -1,0 +1,71 @@
+@font-face {
+font-family: "YandexSansDisplay";
+src: url("./assets/fonts/YandexSansDisplay-Regular.woff2") format("woff2");
+  /*Todo подключить шрифты других форматов*/
+  /*https://moguta.ru/blog/delaem-internet-magazin-vmeste/kak-podklyuchit-shrift-na-sajt-v-css*/
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "YandexSansDisplay";
+  src: url("./assets/fonts/YandexSansText-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 600;
+}
+
+.visually-hidden {
+  /* Contain text within 1px box */
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
+  /* Keep the layout */
+  position: absolute;
+  /* Remove any visible trace (e.g. background color) */
+  clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%); /* browsers in the future */
+  /* Prevent the screen reader to skip spaces between words */
+  white-space: nowrap;
+}
+
+:root {
+  font-size: 14px;
+  font-family: "YandexSansDisplay", "Arial", sans-serif ;
+  font-weight: normal;
+  font-style: normal;
+
+
+  --tag-color-violet: #EEE1FD;
+  --tag-color-green: #BAF8CF;
+  --tag-color-red: #FED6CC;
+  --tag-color-orange: #FFDCB6;
+  --tag-color-blue: #B8E6FF;
+  --tag-color-lightgreen: #D8FCB0;
+  --tag-color-darkblue: #C6D9FF;
+  --tag-color-yellow: #FFF4C7;
+
+  --border-color-lightgrey: #CACACA;
+
+  --text-color-base: #333333;
+
+  --button-bg-color-yellow: #FFE445;
+}
+
+
+body {
+  background-color: #f5f5f5;
+  color: var(--text-color-base)
+}
+
+.center {
+  margin: 0 auto;
+  width: 840px;
+}
+
+.border-wrap {
+  padding: 12px;
+  border: 1px solid var(--border-color-lightgrey);
+  border-radius: 6px;
+  min-height: 50px;
+}

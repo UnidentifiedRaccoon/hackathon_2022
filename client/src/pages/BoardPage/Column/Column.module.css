@@ -1,0 +1,17 @@
+.column__title {
+    font-size: 1.15rem;
+    padding-left: 25px;
+}
+
+.column__content {
+    padding: 12px 0;
+}
+
+.column__button {
+    margin-top: 15px;
+}
+
+.column__padding {
+    padding-inline: 12px;
+    display: block
+}

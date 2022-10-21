@@ -1,0 +1,37 @@
+.popup {
+    z-index: 10;
+    box-sizing: border-box;
+    position: relative;
+    padding: 12px;
+    border-radius: 6px;
+    background-color: white;
+    overflow: hidden;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.12);
+    min-width: 135px;
+}
+
+.popup__btn {
+    text-decoration: none;
+    display: block;
+    padding: 5px;
+    padding-inline: 0;
+    color: var(--text-color-base);
+    background-color: transparent;
+    border: none;
+    border-radius: 4px;
+}
+
+.popup__btn:hover,
+.popup__btn:focus {
+    background-color: #c0c0c0;
+}
+
+
+
+.popup__cross {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+}

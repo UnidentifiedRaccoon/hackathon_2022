@@ -1,0 +1,24 @@
+.item {
+    padding-right: 6px;
+}
+
+.item:focus {
+    outline: none;
+}
+
+.item article {
+    transition: background-color 0.2s ease;
+}
+
+.item:hover article {
+    background-color: #f3f3ff;
+}
+
+.item:focus article {
+    background-color: #f3f3ff;
+}
+
+.item_dragged article {
+    background-color: #dedeff;
+}
+

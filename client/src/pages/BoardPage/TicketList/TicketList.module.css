@@ -1,0 +1,36 @@
+.list {
+    list-style: none;
+    margin: 0;
+    padding: 0 6px 0 12px;
+    min-height: 50px;
+    border-radius: 6px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.list li {
+    margin-bottom: 10px;
+}
+
+.list_dragged_over {
+    background-color: #c4c9cc;
+    transition: background-color 0.2s ease;
+}
+
+.list::-webkit-scrollbar {
+    width: 6px
+}
+.list::-webkit-scrollbar-track {
+    background-color: #d8dcff;
+    margin-block: 0.5rem;
+    border-radius: 100vw;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #a6a6ff;
+    border-radius: 100vw;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+

@@ -1,0 +1,58 @@
+.modal {
+    box-sizing: border-box;
+    position: fixed;
+    top: 25vh;
+    left: calc(50% - 250px);
+    z-index: 101;
+    width: 500px;
+    background-color: white;
+    padding: 45px 85px 65px;
+    border-radius: 11px;
+    animation-name: popup;
+    animation-duration: 0.7s;
+}
+
+@keyframes popup {
+    0% {
+        transform: translate(0, -800px)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+.modal__backdrop {
+    z-index: 100;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+    background-color: black;
+    cursor: pointer;
+}
+
+.modal__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.modal__heading {
+    font-size: 1.15rem;
+}
+
+.modal__title {
+    margin-bottom: 10px;
+}
+
+.modal__description {
+    margin-bottom: 10px;
+}
+
+.modal__error {
+    color: #d96c6c
+}
+
+
+

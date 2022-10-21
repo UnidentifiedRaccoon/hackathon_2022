@@ -1,0 +1,37 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--button-bg-color-yellow);
+    border: none;
+    padding: 12px 0 14px;
+    width: 100%;
+    border-radius: 11px;
+}
+
+.button:hover,
+.button:focus {
+    background-color: #f3c400;
+}
+
+.button:disabled,
+.button:disabled:hover,
+.button:disabled:focus {
+    background-color: #eceae6;
+}
+
+.button_add .button__before {
+    display: block;
+    position: relative;
+    margin-right: 0.3rem;
+
+    width: 1rem;
+    height: 1rem;
+    background-image: url('./img/cross.svg');
+    background-repeat: no-repeat;
+    background-position: 70% center;
+}
+
+.button_small {
+    width: 150px;
+}

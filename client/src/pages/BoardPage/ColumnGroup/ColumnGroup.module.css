@@ -1,0 +1,5 @@
+.group {
+    display: grid;
+    grid-template-columns: 277px 277px 277px;
+    grid-column-gap: 10px;
+}

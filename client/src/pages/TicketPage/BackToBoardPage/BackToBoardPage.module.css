@@ -1,0 +1,25 @@
+.back {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: var(--text-color-base);
+    transition: 0.2s ease;
+
+}
+
+.back:hover,
+.back:focus {
+    transform: translate(-30px, 0);
+}
+
+.back::before {
+    display: block;
+    content: "";
+    margin: 10px;
+    width: 35px;
+    height: 20px;
+    background-image: url('./img/return-down-forward.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+}

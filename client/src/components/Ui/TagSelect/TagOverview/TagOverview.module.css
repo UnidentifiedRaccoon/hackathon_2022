@@ -1,0 +1,35 @@
+.overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
+    margin-bottom: 10px;
+}
+
+.overview__tag {
+    position: relative;
+    height: 24px;
+}
+
+.overview__tag:nth-child(4n) {
+    margin-right: 0;
+}
+
+.overview__tag:hover .overview__cross,
+ .overview__cross:focus {
+     width: 10px;
+     height: 10px;
+     padding: 2px;
+     outline: none;
+
+ }
+
+.overview__cross {
+    position: absolute;
+    right: 0;
+    top: 2px;
+    width: 0;
+    height: 0;
+    padding: 0;
+}
+
+
