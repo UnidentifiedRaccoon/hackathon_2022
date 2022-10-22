@@ -3,22 +3,22 @@ const { selectAllTasksQuery } = require("../data/queries");
 const { selectTaskByIdQuery } = require("../data/queries");
 
 const task = {
-    getAllTasks(req, res) {
-        connection.all(selectAllTasksQuery, (err, raws) => {
+    getAllTasks(_, res) {
+        connection.all(selectAllTasksQuery, (err, rows) => {
             if (err) {
                 console.error(err);
                 return;
             }
-            res.send(JSON.stringify(raws));
+            res.send(JSON.stringify(rows));
         });
     },
     getTaskById(req, res) {
-        connection.all(selectTaskByIdQuery, (err, raws) => {
+        connection.get(selectTaskByIdQuery, [req.params.id], (err, rows) => {
             if (err) {
                 console.error(err);
                 return;
             }
-            res.send(JSON.stringify(raws));
+            res.send(JSON.stringify(rows));
         });
     }
 };

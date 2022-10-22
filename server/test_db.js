@@ -50,8 +50,6 @@ const create_task_table = `
 
         FOREIGN KEY (creator_id) REFERENCES users(id),
         FOREIGN KEY (executor_id) REFERENCES users(id)
-
-
     )
 `;
 
@@ -67,8 +65,10 @@ const insert_task_table = `
 
 connection.run(create_task_table, (err) => {
     if (err) { return console.error(err); }
+
     connection.run(insert_task_table, testTasks, err => {
         if (err) { return console.error('Error:', err); }
+        
         console.log('Successfully created tasks');
     })
 });
