@@ -1,8 +1,15 @@
-const { get } = require("./controllers/test.controller");
+const { signUp } = require("./controllers/auth.controller");
+const { getTaskById, getAllTasks, createTask, deleteTask } = require("./controllers/task.controller");
 
 const router = (app) => {
-  app.route("/test")
-    .get(get);
+  app.post('/auth', signUp);
+
+  app.get('/task', getAllTasks);
+  app.get('/task/:id', getTaskById);
+
+  app.post('/task', createTask);
+  
+  app.delete('/task/:id', deleteTask);
 };
 
 module.exports = {

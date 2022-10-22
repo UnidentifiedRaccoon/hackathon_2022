@@ -1,24 +1,45 @@
-const { connection } = require("../data/connection");
-const { selectAllTasksQuery } = require("../data/queries");
-const { selectTaskByIdQuery } = require("../data/queries");
+const { createError } = require("../util/error")
+const { createSuceess } = require("../util/success")
+const { getTasks, getTaskById, deleteTask, createTask } = require("../data/repositiries/task.repository");
 
 const task = {
-    getAllTasks(req, res) {
-        connection.all(selectAllTasksQuery, (err, raws) => {
+    getAllTasks(_, res) {
+        getTasks((err, rows) => {
             if (err) {
                 console.error(err);
-                return;
+                return res.send(createError('Can not get tasks'));
             }
-            res.send(JSON.stringify(raws));
+            res.send(JSON.stringify(rows));
         });
     },
+
     getTaskById(req, res) {
-        connection.all(selectTaskByIdQuery, (err, raws) => {
+        getTaskById(req.params.id, (err, rows) => {
             if (err) {
                 console.error(err);
-                return;
+                return res.send(createError('Can not get this task'));
             }
-            res.send(JSON.stringify(raws));
+            res.send(JSON.stringify(rows));
+        });
+    },
+
+    deleteTask(req, res) {
+        deleteTask(req.params.id, (err, rows) => {
+            if (err) {
+                console.error(err);
+                return res.send(createError('Can not delete task'));
+            }
+            res.send(JSON.stringify(rows));
+        })
+    },
+
+    createTask(req, res) {
+        createTask(req.body, err => {
+            if (err) {
+                console.log(err);
+                return res.send(createError('Can not create task'));
+            }
+            return res.send(createSuceess('Task was successfully created'));
         });
     }
 };
