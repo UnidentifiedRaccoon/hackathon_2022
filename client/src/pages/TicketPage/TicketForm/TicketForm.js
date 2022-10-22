@@ -52,7 +52,7 @@ const TicketForm = () => {
   useEffect(() => {
     setValue('title', title);
     setValue('description', description);
-  }, [title, description]);
+  }, [title, description, setValue]);
 
   const nameFieldConfig = {
     placeholder: 'Название',

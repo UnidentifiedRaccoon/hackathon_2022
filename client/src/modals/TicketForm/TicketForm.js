@@ -35,12 +35,11 @@ const TicketForm = ({mode, config, backTo}) => {
   useEffect(() => {
     setValue('title', title);
     setValue('description', description);
-  }, [title, description]);
+  }, [title, description, setValue]);
 
 
   const onSubmit = (evt) => {
     evt.tags = tagList;
-    console.log(evt);
     if (mode === 'edit') dispatch(updateTask({...config, ...evt}));
     else dispatch(addTask(evt));
 

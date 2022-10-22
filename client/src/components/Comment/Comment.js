@@ -2,7 +2,7 @@ import Cross from '../Ui/Cross/Cross';
 
 import styles from './Comment.module.css';
 
-const Comment = ({comment, className = '', onClickDelete}) => {
+const Comment = ({comment,  className = '', onClickDelete}) => {
   const {id, author, text} = comment;
   const onClick = () => {
     onClickDelete(id);
