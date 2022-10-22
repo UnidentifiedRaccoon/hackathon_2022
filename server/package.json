@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prod": "PORT=80 DB_PATH=/root/dist/app/data/hackathon.db node app/main",
     "start": "node src/main",
+    "fill-db": "DB_PATH=/root/dist/app/data/hackathon.db node test_db.js",
     "build": "gulp"
   },
   "keywords": [],
