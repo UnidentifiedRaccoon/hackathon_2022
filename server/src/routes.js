@@ -1,15 +1,20 @@
-const { signUp } = require("./controllers/auth.controller");
+const { signUp, signIn } = require("./controllers/auth.controller");
+const { checkAuth } = require('./util/checkAuth');
+
 const { getTaskById, getAllTasks, createTask, deleteTask } = require("./controllers/task.controller");
 
 const router = (app) => {
-  app.post('/auth', signUp);
+    app.post('/reg', signUp);
+    app.post('/auth', signIn);
 
-  app.get('/task', getAllTasks);
-  app.get('/task/:id', getTaskById);
+    app.use(checkAuth);
 
-  app.post('/task', createTask);
-  
-  app.delete('/task/:id', deleteTask);
+    app.get('/task/:id', getTaskById);
+    app.get('/task', getAllTasks);
+
+    app.post('/task', createTask);
+    
+    app.delete('/task/:id', deleteTask);
 };
 
 module.exports = {
