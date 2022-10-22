@@ -73,14 +73,13 @@ const store = {
         text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ante nunc, ' +
             'malesuada sed orci ut, scelerisque aliquet libero.' +
             ' Sed quis dolor varius, scelerisque dui semper, vulputate turpis. ',
+      },{
+        author: 'Петров Петр',
+        id: 2,
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ante nunc, ' +
+            'malesuada sed orci ut, scelerisque aliquet libero.' +
+            ' Sed quis dolor varius, scelerisque dui semper, vulputate turpis. ',
       },
-      // ,{
-      //   author: 'Петров Петр',
-      //   id: 2,
-      //   text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ante nunc, ' +
-      //       'malesuada sed orci ut, scelerisque aliquet libero.' +
-      //       ' Sed quis dolor varius, scelerisque dui semper, vulputate turpis. ',
-      // },
       ],
     },
     {
