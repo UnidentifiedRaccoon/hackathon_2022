@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prod": "PORT=80 node app/main",
+    "prod": "PORT=80 DB_PATH=/root/dist/app/data/hackathon.db node app/main",
     "start": "node src/main",
     "build": "gulp"
   },
@@ -13,7 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.2"
   },
   "devDependencies": {
     "gulp": "^4.0.2"
