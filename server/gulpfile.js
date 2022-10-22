@@ -1,10 +1,21 @@
-const { src, dest } = require("gulp");
+const { src, dest, series, task } = require("gulp");
+const gulpClean = require("gulp-clean");
 
-function defaultTask(cb) {
-  src("package.json").pipe(dest("dist/"));
-  src("package-lock.json").pipe(dest("dist/"));
-  src("src/**/*").pipe(dest("dist/app"));
-  cb();
-}
+task('clean', () => {
+  return src('dist', {
+    allowEmpty: true,
+    read: false,
+  })
+    .pipe(gulpClean())
+});
 
-exports.default = defaultTask;
+task('build', () => {
+  return src("package.json")
+    .pipe(dest("dist/"))
+    .pipe(src("package-lock.json"))
+    .pipe(dest("dist/"))
+    .pipe(src("src/**/*"))
+    .pipe(dest("dist/app"))
+})
+
+exports.default = series('clean', 'build');

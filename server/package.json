@@ -6,7 +6,8 @@
   "scripts": {
     "prod": "PORT=80 DB_PATH=/root/dist/app/data/hackathon.db node app/main",
     "start": "node src/main",
-    "fill-db": "DB_PATH=/root/dist/app/data/hackathon.db node test_db.js",
+    "fill-db:local": "DB_PATH=/Users/matvej/Desktop/hackathon_2022/server/src/data/hackathon.db node src/test_db.js",
+    "fill-db:prod": "DB_PATH=/root/dist/app/data/hackathon.db node app/test_db.js",
     "build": "gulp"
   },
   "keywords": [],
@@ -18,6 +19,7 @@
     "sqlite3": "^5.1.2"
   },
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0"
   }
 }
