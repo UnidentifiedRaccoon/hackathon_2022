@@ -49,6 +49,7 @@ const Notification = () => {
       setTitle(metaOnUpdate.title);
       setOperation(metaOnUpdate.operation);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [metaOnUpdatePos, metaOnAdd, metaOnUpdate, metaOnFetch, metaOnDelete,
   ]);
 
@@ -65,7 +66,7 @@ const Notification = () => {
 
   const specialClass = getClass(title);
   const classes = `${styles.notification} ${specialClass}`;
-  
+
   return <div className={classes}>
     <h3 className={styles.notification__title}>{title}</h3>
     <p className={styles.notification__text}>{operation}</p>

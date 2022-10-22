@@ -1,7 +1,5 @@
 import {useState } from 'react';
 
-import Input from '../../Input/Input';
-
 import {TAG_COLORS} from '../../../../const';
 
 
@@ -11,7 +9,7 @@ import Checkbox from '../../Checkbox/Checkbox';
 
 import styles from './Multiselect.module.css';
 
-const Multiselect = ({className = '', tagList, setTagList, register}) => {
+const Multiselect = ({className = '', tagList, setTagList}) => {
   const onChange = (evt) => {
     const color = evt.target.name;
     if (evt.target.checked) setTagList(tags =>  [...tags, color]);

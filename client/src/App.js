@@ -5,12 +5,10 @@ import TicketPage from './pages/TicketPage/TicketPage';
 
 function App() {
   return(
-    <>
-      <Routes>
-        <Route path="*" element={<BoardPage />}/>
-        <Route path="/full/:id/*" element={<TicketPage />}/>
-      </Routes>
-    </>
+    <Routes>
+      <Route path="*" element={<BoardPage />}/>
+      <Route path="/full/:id/*" element={<TicketPage />}/>
+    </Routes>
   );
 }
 
