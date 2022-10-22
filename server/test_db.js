@@ -3,13 +3,13 @@ const { connection } = require('./src/data/connection');
 
 const create_user_table = `
     CREATE TABLE IF NOT EXISTS users (
-        USER_ID INTEGER PRIMARY KEY,
-        EMAIL TEXT NOT NULL,
-        PASSWORD TEXT NOT NULL,
-        FIRST_NAME TEXT NOT NULL,
-        MID_NAME TEXT,
-        LAST_NAME TEXT NOT NULL,
-        AVATAR TEXT
+        id INTEGER PRIMARY KEY,
+        email TEXT NOT NULL,
+        password TEXT NOT NULL,
+        first_name TEXT NOT NULL,
+        mid_name TEXT,
+        last_name TEXT NOT NULL,
+        avatar TEXT
     );
 `;
 
@@ -20,20 +20,55 @@ const testUsers = [
 
 const insert_user_table = `
     INSERT INTO users(
-        EMAIL,
-        PASSWORD,
-        FIRST_NAME,
-        LAST_NAME
+        email,
+        password,
+        first_name,
+        last_name
     )
     VALUES${createInsertionTpl(testUsers, 4)};`;
 
-connection
-    // .run('DROP TABLE users')
-    .run(create_user_table)
-    .run(insert_user_table, testUsers, err => {
-        if (err) {
-            console.error('Error:', err);
-            return;
-        }
+connection.run(create_user_table, (err) => {
+    if (err) { return console.error(err); }
+    connection.run(insert_user_table, testUsers, err => {
+        if (err) { returnconsole.error('Error:', err); }
         console.log('Successfully created users');
-    });
+    })
+});
+
+const create_task_table = `
+    CREATE TABLE IF NOT EXISTS tasks (
+        id INTEGER PRIMARY KEY,
+        title TEXT NOT NULL,
+        description TEXT,
+
+        creator_id INTEGER,
+        executor_id INTEGER,
+        priority INTEGER,
+
+        date_created INTEGER,
+        deadline INTEGER,
+
+        FOREIGN KEY (creator_id) REFERENCES users(id),
+        FOREIGN KEY (executor_id) REFERENCES users(id)
+
+
+    )
+`;
+
+const testTasks = [
+    "TEST TITLE!!!"
+]
+
+const insert_task_table = `
+    INSERT INTO tasks(
+        title
+    )
+    VALUES${createInsertionTpl(testTasks, 1)};`;
+
+connection.run(create_task_table, (err) => {
+    if (err) { return console.error(err); }
+    connection.run(insert_task_table, testTasks, err => {
+        if (err) { return console.error('Error:', err); }
+        console.log('Successfully created tasks');
+    })
+});
