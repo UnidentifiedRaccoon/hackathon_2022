@@ -32,16 +32,25 @@ const TicketForm = ({mode, config, backTo}) => {
   useEffect(() => {
     let date = new Date(new Date(deadline).getTime() + 1000 * 60 * 60 * 3).toISOString();
     date = date.slice(0, 16);
-    setValue('title', title);
-    setValue('description', description);
-    setValue('executor', executor);
-    setValue('deadline', date);
+    if (title) {
+      setValue('title', title);
+    }
+    if (description) {
+      setValue('description', description);
+    }
+    if (executor) {
+      setValue('executor', executor);
+      setValue('deadline', date);
+
+    }
   }, [title, description, executor, deadline, setValue]);
 
 
   const onSubmit = (evt) => {
     evt.points = Object.entries(pointsList).filter(([_, point]) => point.label);
     evt.deadline = new Date(evt.deadline).getTime();
+    // eslint-disable-next-line no-console
+    console.log(evt);
     if (mode === 'edit') dispatch(updateTask({...config, ...evt}));
     else dispatch(addTask(evt));
     navigate(backTo);

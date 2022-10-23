@@ -23,10 +23,6 @@ import {deleteComment, fetchTask, taskSelector} from '../../../store/currentTask
 
 import {deleteTask, updateTask} from '../../../store/board';
 
-import generalStyles from '../../../modals/Modal.module.css';
-
-import CheckList from '../../../components/CheckList/CheckList';
-
 import FormHeader from './FormHeader/FormHeader';
 
 import styles from './TicketForm.module.css';
@@ -38,10 +34,8 @@ const TicketForm = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState('view'); // edit
   const task = useSelector(taskSelector);
-  const { title, description, column, comments, points} = task;
-
+  const { title, description, column, comments} = task;
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-  const [pointsList, setPointsList] = useState(points);
 
   useEffect(() => {
     dispatch(fetchTask(id));
@@ -70,7 +64,6 @@ const TicketForm = () => {
   };
 
   const onSubmit = (evt) => {
-    evt.points = pointsList;
     dispatch(updateTask({...task, ...evt}));
     setMode('view');
   };
@@ -119,9 +112,6 @@ const TicketForm = () => {
           <Input register={register('description', )}
             config={descriptionFieldConfig}
             className={styles.form__description}/>
-          <div className={generalStyles.check_list}>
-            <CheckList points={pointsList} setPoints={setPointsList}/>
-          </div>
           <div className={styles.form__comments}>
             {Comments}
           </div>

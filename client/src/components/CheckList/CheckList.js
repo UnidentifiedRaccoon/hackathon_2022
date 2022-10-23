@@ -9,7 +9,7 @@ import styles from './CheckList.module.css';
 
 
 const Checkboxes = (props) => {
-  const {points, setPoints} = props;
+  const {points = {}, setPoints} = props;
   return <>
     {Object.entries(points).length ?
       <div>
