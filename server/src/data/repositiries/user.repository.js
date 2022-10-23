@@ -8,7 +8,8 @@ const createUserQuery = `
         first_name,
         last_name
     )
-    VALUES (?, ?, ?, ?);
+    VALUES (?, ?, ?, ?)
+    RETURNING *;
 `;
 
 const getUserByEmail = (email, callback) => {
@@ -19,8 +20,8 @@ const getUserByEmail = (email, callback) => {
 
 const createUser = (user, callback) => {
     const options = [user.email, user.password, user.first_name, user.last_name];
-    connection.get(createUserQuery, options, (err) => {
-        callback(err);
+    connection.get(createUserQuery, options, (err, row) => {
+        callback(err, row);
     });
 }
 
