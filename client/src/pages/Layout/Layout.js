@@ -22,7 +22,7 @@ const Layout = (props) => {
             <Link to="settings">
               <Settings size="30"/>
             </Link>
-            <Link to="settings">
+            <Link to="login">
               <Leave size="25"/>
             </Link>
           </div>
