@@ -10,6 +10,7 @@ import ColumnGroup from './ColumnGroup/ColumnGroup';
 const BoardPage = () => {
   const boardData = useSelector(boardSelector);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchBoard());
   }, [dispatch]);

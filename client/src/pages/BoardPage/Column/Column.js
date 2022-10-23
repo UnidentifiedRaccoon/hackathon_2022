@@ -19,10 +19,10 @@ const emptyTask = {
 const Column = ({column, tasks}) => {
   return (
     <div className={styles.column}>
-      <h2 className={styles.column__title}>{column.title}</h2>
+      <h2 className={styles.column__title}>{column.id}</h2>
       <div className={`border-wrap ${styles.column__content}`}>
         <DroppableTicketList column={column} tasks={tasks} />
-        {column.id === 'column-1' &&
+        {column.id === 'Todo' &&
             <span className={styles.column__padding}>
               <LinkButton mode="add" className={styles.column__button} to="create">Добавить тикет</LinkButton>
               <Routes>

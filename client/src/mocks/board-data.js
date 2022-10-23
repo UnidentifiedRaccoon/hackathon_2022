@@ -1,18 +1,11 @@
-import {TAG_COLORS} from '../const';
-
 const store = {
   tasks: [
     {
       id: 'task-1',
       title: 'Нарисовать иллюстрации',
       description: 'Какое-то описание какой-то задачи',
-      column: 'column-1',
-      tags: [
-        TAG_COLORS.RED,
-        TAG_COLORS.BLUE,
-        TAG_COLORS.YELLOW,
-        TAG_COLORS.GREEN,
-      ],
+      column: 'Todo',
+      deadline: new Date(Date.now() + 100000),
       comments: [ {
         author: 'Иванов Иван',
         id: 1,
@@ -50,23 +43,16 @@ const store = {
     {
       id: 'task-2',
       title: 'Сверстать лендинг по готовому шаблону',
-      column: 'column-2',
-      tags: [],
+      column: 'In progress',
+      deadline: new Date(Date.now() + 100010),
       comments: [],
     },
     {
       id: 'task-3',
+      deadline: new Date(Date.now() + 100020),
       title: 'Внести правки в макет',
       description: 'Какое-то описание какой-то задачи',
-      column: 'column-3',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-        TAG_COLORS.RED,
-        TAG_COLORS.BLUE,
-      ],
+      column: 'Done',
       comments: [ {
         author: 'Иванов Иван',
         id: 1,
@@ -84,90 +70,61 @@ const store = {
     },
     {
       id: 'task-4',
+      deadline: new Date(Date.now() + 100030),
+
       title: 'Согласовать изменения с заказчиком',
       description: 'Какое-то описание какой-то задачи',
-      column: 'column-2',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'In progress',
       comments: [],
     },
     {
       id: 'task-5',
+      deadline: new Date(Date.now() + 100050),
+
       title: 'Изменить цвет кнопки',
-      column: 'column-3',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'Done',
       comments: [],
     },
     {
       id: 'task-6',
+      deadline: new Date(Date.now() + 100060),
+
       title: 'Добавить dnd',
-      column: 'column-2',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'In progress',
       comments: [],
     },
     {
       id: 'task-7',
+      deadline: new Date(Date.now() + 100070),
+
       title: 'Добавить компонент фильтрации',
       description: 'Какое-то описание',
-      column: 'column-2',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'In progress',
       comments: [],
     },
     {
       id: 'task-8',
+      deadline: new Date(Date.now() + 100080),
+
       title: 'Сверстать страницу тикета',
-      column: 'column-1',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'Todo',
       comments: [],
     },
     {
       id: 'task-9',
+      deadline: new Date(Date.now() + 100090),
+
       title: 'Запушить изменения в репозиторий',
       description: 'Какое-то описание какой-то задачи',
-      column: 'column-2',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'In progress',
       comments: [],
     },
     {
       id: 'task-10',
+      deadline: new Date(Date.now() + 100100),
       title: 'Отправить задачу на проверку',
       description: 'Какое-то описание какой-то задачи',
-      column: 'column-2',
-      tags: [
-        TAG_COLORS.DARK_BLUE,
-        TAG_COLORS.ORANGE,
-        TAG_COLORS.GREEN,
-        TAG_COLORS.YELLOW,
-      ],
+      column: 'In progress',
       comments: [ {
         author: 'Иванов Иван',
         id: 1,
@@ -185,24 +142,10 @@ const store = {
     },
   ],
   columns: {
-    'column-1': {
-      id: 'column-1',
-      title: 'Todo',
-      taskIds: ['task-1','task-8'],
-    },
-    'column-2': {
-      id: 'column-2',
-      title: 'In progress',
-      taskIds: [ 'task-2', 'task-4', 'task-6', 'task-7', 'task-9', 'task-10'],
-    },
-    'column-3': {
-      id: 'column-3',
-      title: 'Done',
-      taskIds: ['task-3', 'task-5'],
-    },
+    'Todo':  {id: 'Todo', taskIds: []},
+    'In progress':  {id: 'In progress', taskIds: []},
+    'Done':  {id: 'Done', taskIds: []},
   },
-  // Facilitate reordering of the columns
-  columnOrder: ['column-1', 'column-2', 'column-3'],
   RequestMeta: {},
 };
 

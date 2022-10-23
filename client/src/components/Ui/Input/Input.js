@@ -5,15 +5,15 @@ import styles from './Input.module.css';
 const Input = ({children, className = '', config, register, onClick, onChange, onBlur}) => {
   const {multiline, ...rest} = config;
   const onChangeHandler = (event) => {
-    if (onChange)  onChange(event);
-    register.onChange(event);
+    if (onChange) onChange(event);
+    if (register) register.onChange(event);
   };
 
   const onBlurHandler = (event) => {
     if (onBlur)  {
       onBlur(event);
     }
-    register.onBlur(event);
+    if (register) register.onBlur(event);
   };
 
 

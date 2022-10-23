@@ -25,7 +25,7 @@ class TicketsAPI {
     const board = await this.requestBoard();
     return board.tasks.find(t => t.id === id);
   }
-  
+
   async requestBoard() {
     let response = await lsRequest.getItem(TICKETS_KEY);
     if (!response?.tasks) {
@@ -41,17 +41,7 @@ class TicketsAPI {
 
   async updateTaskPosition( source, destination, taskId) {
     const board = await this.requestBoard();
-    const sourceId = source.droppableId;
-    const  destinationId = destination.droppableId;
-    if (sourceId === destinationId) {
-      board.columns[sourceId].taskIds.splice(source.index, 1);
-      board.columns[sourceId].taskIds.splice(destination.index, 0, taskId);
-    } else {
-      const index = board.tasks.findIndex(task => task.id === taskId);
-      board.tasks[index].column = destinationId;
-      board.columns[sourceId].taskIds = board.columns[sourceId].taskIds.filter(id => id !== taskId);
-      board.columns[destinationId].taskIds.splice(destination.index, 0, taskId);
-    }
+    board.tasks.find(task => task.id === taskId).column = destination.droppableId;
     await this.updateBoard(board);
   }
 

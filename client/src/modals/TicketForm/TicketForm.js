@@ -19,8 +19,7 @@ import Suggest from '../../components/Suggest/Suggest';
 
 
 const TicketForm = ({mode, config, backTo}) => {
-  const { title, description,  points} = config;
-
+  const { title, description, deadline = new Date(), executor= '',  points = []} = config;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [pointsList, setPointsList] = useState(Object.fromEntries(points));
@@ -31,14 +30,18 @@ const TicketForm = ({mode, config, backTo}) => {
   const timeFieldConfig = {placeholder: 'DD.MM.YY HH.MM', type: 'datetime-local'};
 
   useEffect(() => {
+    let date = new Date(deadline).toISOString();
+    date = date.slice(0, 16);
     setValue('title', title);
     setValue('description', description);
-  }, [title, description, setValue]);
+    setValue('executor', executor);
+    setValue('deadline', date);
+  }, [title, description, executor, deadline, setValue]);
 
 
   const onSubmit = (evt) => {
     evt.points = Object.entries(pointsList).filter(([_, point]) => point.label);
-    console.log(evt);
+    evt.deadline = new Date(evt.deadline).getTime();
     if (mode === 'edit') dispatch(updateTask({...config, ...evt}));
     else dispatch(addTask(evt));
     navigate(backTo);
@@ -64,7 +67,7 @@ const TicketForm = ({mode, config, backTo}) => {
               className={generalStyles.modal__half}/>
             <Suggest register={register} setValue={setValue}/>
           </div>
-          <Input register={register('time' )}
+          <Input register={register('deadline' )}
             config={timeFieldConfig}/>
           <div className={generalStyles.check_list}>
             <CheckList points={pointsList} setPoints={setPointsList}/>

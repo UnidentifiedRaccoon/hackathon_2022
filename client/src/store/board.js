@@ -3,7 +3,6 @@ import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit';
 import TicketsAPI from '../backend/TicketsAPI';
 
 
-
 export const fetchBoard = createAsyncThunk(
   'board/fetchBoard', async(_,{dispatch}) => {
     const data = await TicketsAPI.requestBoard();
@@ -21,7 +20,7 @@ export const updateTaskPosition = createAsyncThunk(
 
 export const addTask = createAsyncThunk(
   'board/addTask', async(taskData, {dispatch}) => {
-    const task = {...taskData, comments: [], id: nanoid(), column: 'column-1'};
+    const task = {...taskData, comments: [], id: nanoid(), column: 'Todo'};
     dispatch(boardSlice.actions.addTask(task));
     await TicketsAPI.addTask(task);
   }
@@ -44,8 +43,11 @@ export const deleteTask = createAsyncThunk(
 
 const initialState = {
   requestMeta: {},
-  columnOrder: [],
-  columns: {},
+  columns: {
+    'Todo':  {id: 'Todo', taskIds: []},
+    'In progress':  {id: 'In progress', taskIds: []},
+    'Done':  {id: 'Done', taskIds: []},
+  },
   tasks: [],
 };
 
@@ -70,7 +72,7 @@ export const boardSlice = createSlice({
     },
     addTask: (state, action) => {
       state.tasks.push(action.payload);
-      state.columns['column-1'].taskIds.push(action.payload.id);
+      state.columns['Todo'].taskIds.push(action.payload.id);
     },
     updateTask: (state, action) => {
       const index = state.tasks.findIndex(task => task.id === action.payload.id);
@@ -78,8 +80,12 @@ export const boardSlice = createSlice({
     },
     fetchBoard: (state, action) => {
       state.tasks = action.payload.tasks;
-      state.columns = action.payload.columns;
-      state.columnOrder = action.payload.columnOrder;
+      const columns = Object.entries(state.columns).map(([id, column]) => {
+        const tasks = state.tasks.filter(task => task.column === column.id);
+        const taskIds = tasks.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());;
+        return  [id ,{...column, taskIds}];
+      });
+      state.columns = Object.fromEntries(columns);
     },
     deleteTask: (state, action) => {
       state.columns[action.payload.column].taskIds =

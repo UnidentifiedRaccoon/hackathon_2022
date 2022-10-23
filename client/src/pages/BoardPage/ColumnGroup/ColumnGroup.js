@@ -7,12 +7,13 @@ import {updateTaskPosition} from '../../../store/board';
 
 import styles from './ColumnGroup.module.css';
 
+
+
 const ColumnGroup = ({boardData}) => {
   const dispatch = useDispatch();
-  const Columns = boardData.columnOrder.map((columnId) => {
-    const column = boardData.columns[columnId];
+  const Columns = Object.entries(boardData.columns).map(([_, column]) => {
     const tasks = boardData.tasks.filter(task => task.column === column.id);
-    const orderedTask = column.taskIds.map(id => tasks.find(task => task.id === id));
+    const orderedTask = tasks.sort((a, b) => new Date(a.deadline).getTime() - new Date(b.deadline).getTime());
     return <Column key={column.id} column={column} tasks={orderedTask}/>;
   });
 
