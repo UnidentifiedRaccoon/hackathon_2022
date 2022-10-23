@@ -23,6 +23,10 @@ import {deleteComment, fetchTask, taskSelector} from '../../../store/currentTask
 
 import {deleteTask, updateTask} from '../../../store/board';
 
+import generalStyles from '../../../modals/Modal.module.css';
+
+import CheckList from '../../../components/CheckList/CheckList';
+
 import FormHeader from './FormHeader/FormHeader';
 
 import styles from './TicketForm.module.css';
@@ -115,6 +119,9 @@ const TicketForm = () => {
           <Input register={register('description', )}
             config={descriptionFieldConfig}
             className={styles.form__description}/>
+          <div className={generalStyles.check_list}>
+            <CheckList points={pointsList} setPoints={setPointsList}/>
+          </div>
           <div className={styles.form__comments}>
             {Comments}
           </div>

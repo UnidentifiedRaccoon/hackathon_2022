@@ -30,7 +30,7 @@ const TicketForm = ({mode, config, backTo}) => {
   const timeFieldConfig = {placeholder: 'DD.MM.YY HH.MM', type: 'datetime-local'};
 
   useEffect(() => {
-    let date = new Date(deadline).toISOString();
+    let date = new Date(new Date(deadline).getTime() + 1000 * 60 * 60 * 3).toISOString();
     date = date.slice(0, 16);
     setValue('title', title);
     setValue('description', description);

@@ -5,8 +5,9 @@ import UserEntranceForm from '../../components/UserEntranceForm/UserEntranceForm
 
 import styles from './SignUpPage.module.css';
 const SignUpPage = () => {
-  const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+  const { register, handleSubmit} = useForm();
   const onSubmit = (evt) => {
+    // eslint-disable-next-line no-console
     console.log(evt);
   };
   const firstnameFieldConfig = {placeholder: 'имя', autoFocus: true};
