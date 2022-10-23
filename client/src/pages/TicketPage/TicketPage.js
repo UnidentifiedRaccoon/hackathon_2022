@@ -1,7 +1,6 @@
 import styles from './TicketPage.module.css';
 import BackToBoardPage from './BackToBoardPage/BackToBoardPage';
 import TicketForm from './TicketForm/TicketForm';
-import Notification from './Notification/Notification';
 
 const TicketPage = () => {
 
@@ -10,7 +9,7 @@ const TicketPage = () => {
       <div className="center">
         <h1 className="visually-hidden">Страница тикета</h1>
         <BackToBoardPage/>
-        <Notification/>
+        {/*<Notification/>*/}
         <TicketForm/>
       </div>
 

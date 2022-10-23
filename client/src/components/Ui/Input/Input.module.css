@@ -21,9 +21,8 @@
 
     font-size: 1.1rem;
     color: var(--text-color-base);
-    background-color: white;
-
     border: none;
+    border-bottom: 2px solid var(--input-border-color);
     border-radius: 4px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
@@ -36,7 +35,8 @@
 
 .input__field:hover,
 .input__field:focus {
-    outline: 2px solid var(--border-color-lightgrey);
+    outline: none;
+    border-color: var(--input-border-color--hover);
 }
 
 .input__field:disabled {
@@ -47,6 +47,7 @@
 .input__field:disabled:hover,
 .input__field:disabled:hover {
     outline: none;
+    border-color: var(--input-border-color)
 }
 
 

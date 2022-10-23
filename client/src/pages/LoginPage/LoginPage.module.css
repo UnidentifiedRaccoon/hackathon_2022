@@ -1,0 +1,8 @@
+.input {
+    margin-bottom: 20px;
+}
+
+.link {
+    color: var(--title-color);
+    font-weight: 500;
+}

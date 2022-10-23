@@ -5,16 +5,14 @@
     justify-content: center;
     padding: 12px 0 14px;
     width: 100%;
-    color: var(--text-color-base);
-    background-color: var(--button-bg-color-yellow);
+    color: #fff;
+    background-color: var(--button-bg);
     border: none;
     border-radius: 11px;
 }
 
-.link:hover,
-.link:focus {
-    background-color: #f3c400;
-
+.link:hover {
+    background-color: var(--button-bg--hover);
 }
 
 .link_add .link__before {

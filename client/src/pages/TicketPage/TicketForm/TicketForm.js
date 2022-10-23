@@ -8,20 +8,16 @@ import {useForm} from 'react-hook-form';
 
 import Button from '../../../components/Ui/Button/Button';
 import Input from '../../../components/Ui/Input/Input';
-import Tag from '../../../components/Ui/Tag/Tag';
 
 import Comment from '../../../components/Comment/Comment';
 
 
-import TagOverview from '../../../components/Ui/TagSelect/TagOverview/TagOverview';
 
 import DeleteTicket from '../../../modals/DeleteTicket/DeleteTicket';
 
 import AddComment from '../../../modals/AddComment/AddComment';
 
 import LinkButton from '../../../components/Ui/LinkButton/LinkButton';
-
-import Multiselect from '../../../components/Ui/TagSelect/Multiselect/Multiselect';
 
 import {deleteComment, fetchTask, taskSelector} from '../../../store/currentTask';
 
@@ -38,17 +34,15 @@ const TicketForm = () => {
   const navigate = useNavigate();
   const [mode, setMode] = useState('view'); // edit
   const task = useSelector(taskSelector);
-  const { title, description, tags, column, comments} = task;
-  const [tagList, setTagList] = useState([]);
+  const { title, description, column, comments, points} = task;
 
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-
+  const [pointsList, setPointsList] = useState(points);
 
   useEffect(() => {
     dispatch(fetchTask(id));
   }, [dispatch, id]);
 
-  useEffect(() => { setTagList(tags);}, [tags]);
   useEffect(() => {
     setValue('title', title);
     setValue('description', description);
@@ -72,7 +66,7 @@ const TicketForm = () => {
   };
 
   const onSubmit = (evt) => {
-    evt.tags = tagList;
+    evt.points = pointsList;
     dispatch(updateTask({...task, ...evt}));
     setMode('view');
   };
@@ -88,16 +82,6 @@ const TicketForm = () => {
 
   const RequiredError = errors.title ? <p className={styles.form__error}>{errors.title.message}</p> : '';
   const isSubmitDisabled = Boolean(errors.title);
-
-  const Select = mode === 'edit' ? <>
-    <TagOverview className={styles.form__overview} tagList={tagList} setTagList={setTagList}/>
-    <Multiselect className={styles.form__multiselect} tagList={tagList} setTagList={setTagList}/>
-  </> : Boolean(tagList) &&
-      <div className={styles.form__tags}>
-        {tagList.map(tag =>
-          <Tag key={`tag-${tag}`} color={tag}
-            className={styles.form__tags}/>)}
-      </div>;
 
   const Comments =  Boolean(comments) && comments.map(comment =>
     <Comment
@@ -131,7 +115,6 @@ const TicketForm = () => {
           <Input register={register('description', )}
             config={descriptionFieldConfig}
             className={styles.form__description}/>
-          {Select}
           <div className={styles.form__comments}>
             {Comments}
           </div>

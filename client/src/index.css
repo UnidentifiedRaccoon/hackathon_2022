@@ -50,10 +50,47 @@ src: url("./assets/fonts/YandexSansDisplay-Regular.woff2") format("woff2");
   --text-color-base: #333333;
 
   --button-bg-color-yellow: #FFE445;
+
+  /*new colors*/
+
+  /*purple*/
+  --title-purple: #aa00ff;
+  --input-border-lightpurple--hover: #aa00ff;
+  --button-bg-lightpurple: #dc98ff;
+  --button-bg-lightpurple--hover: #aa00ff;
+  --button-bg-lightpurple--disabled: #f1d5ff;
+  --scrollbar-bg-lightpurple: #f1d5ff;
+  --scrollbar-thumb-purple: #d073ff;
+
+
+  /*blue*/
+  --title-blue: #00A5FF;
+  --input-border-lightblue--hover: #00A5FF;
+  --button-bg-lightblue: #8cd8ff;
+  --button-bg-lightblue--hover: #00A5FF;
+  --button-bg-lightblue--disabled: #c8ebff;
+  --scrollbar-bg-blue: #d8dcff;
+  --scrollbar-thumb-blue: #a6a6ff;
+
+  /*common*/
+  --title-color: var(--title-purple);
+  --input-border-color: #E1E1E1;
+  --input-border-color--hover: var(--input-border-lightpurple--hover);
+  --button-bg: var(--button-bg-lightpurple);
+  --button-bg--hover: var(--button-bg-lightpurple--hover);
+  --button-bg--disabled: var(--button-bg-lightpurple--disabled);
+  --scrollbar-bg-color: var(--scrollbar-bg-lightpurple);
+  --scrollbar-thumb-color: var(--scrollbar-thumb-purple);
+
+  --checkbox-border: #d073ff;
+  --checkbox-border--hover: #aa00ff;
+  --checkbox-border--disabled: #f1d5ff;
 }
 
 
 body {
+  width: 100vw;
+  height: 100vh;
   background-color: #f5f5f5;
   color: var(--text-color-base)
 }
@@ -68,4 +105,29 @@ body {
   border: 1px solid var(--border-color-lightgrey);
   border-radius: 6px;
   min-height: 50px;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#root main {
+  flex-grow: 1;
+}
+
+*::-webkit-scrollbar {
+  width: 6px
+}
+*::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-bg-color);
+  margin-block: 0.5rem;
+  border-radius: 100vw;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: 100vw;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

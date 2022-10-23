@@ -1,0 +1,12 @@
+
+
+.header_nav {
+    display: flex;
+    align-items: center;
+}
+
+.user_nav {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}

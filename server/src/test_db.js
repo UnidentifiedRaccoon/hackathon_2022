@@ -1,5 +1,5 @@
-const { createInsertionTpl } = require("./src/util/createInsertionTpl");
-const { connection } = require("./src/data/connection");
+const { createInsertionTpl } = require("./util/createInsertionTpl");
+const { connection } = require("./data/connection");
 
 const create_user_table = `
     CREATE TABLE IF NOT EXISTS users (

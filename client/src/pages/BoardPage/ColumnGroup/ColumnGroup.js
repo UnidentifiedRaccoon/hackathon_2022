@@ -5,9 +5,6 @@ import Column from '../Column/Column';
 
 import {updateTaskPosition} from '../../../store/board';
 
-
-import Notification from '../Notification/Notification';
-
 import styles from './ColumnGroup.module.css';
 
 const ColumnGroup = ({boardData}) => {
@@ -31,7 +28,7 @@ const ColumnGroup = ({boardData}) => {
 
   return (
     <>
-      <Notification/>
+      {/*<Notification/>*/}
       <section className={styles.group}>
         <h2 className="visually-hidden">Колонки с задачами</h2>
         <DragDropContext  onDragEnd={onDragEnd}>

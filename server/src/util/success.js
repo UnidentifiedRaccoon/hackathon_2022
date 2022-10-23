@@ -1,7 +1,8 @@
-const createSuceess = (message) => {
+const createSuceess = (message, data) => {
     return JSON.stringify({
         success: true,
-        message
+        message,
+        data
     });
 }
 
