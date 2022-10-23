@@ -20,7 +20,7 @@ const auth = {
                     res.writeHead(500);
                     return res.end(createError('Can not create user'));
                 }
-                sign(req.body.email, (err, token) => {
+                sign({ email: user.email, id: user.id }, (err, token) => {
                     if (err) {
                         res.writeHead(500);
                         return res.end(createError('Can not create user'));
@@ -39,7 +39,7 @@ const auth = {
                 return res.end(createError('Can not authorize user'));
             }
             if (user && req.body.password === user.password) {
-                return sign(req.body.email, (err, token) => {
+                return sign({ email: user.email, id: user.id }, (err, token) => {
                     if (err) {
                         res.writeHead(500);
                         return res.end(createError('Can not authorize user'));
