@@ -9,29 +9,24 @@ import {useDispatch} from 'react-redux';
 
 import Modal from '../Modal';
 import Input from '../../components/Ui/Input/Input';
-import TagOverview from '../../components/Ui/TagSelect/TagOverview/TagOverview';
+// import TagOverview from '../../components/Ui/TagSelect/TagOverview/TagOverview';
 import Button from '../../components/Ui/Button/Button';
 
 import generalStyles from '../Modal.module.css';
 
-import Multiselect from '../../components/Ui/TagSelect/Multiselect/Multiselect';
-
 import {addTask, updateTask} from '../../store/board';
-
-import styles from './TicketForm.module.css';
+import CheckList from '../../components/CheckList/CheckList';
 
 
 const TicketForm = ({mode, config, backTo}) => {
-  const { title, description,  tags} = config;
+  const { title, description,  points} = config;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [tagList, setTagList] = useState(tags);
+  const [pointsList, setPointsList] = useState(Object.fromEntries(points));
   const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-
   const titleFieldConfig = {placeholder: 'Название', autoFocus: true};
   const descriptionFieldConfig = {placeholder: 'Описание', multiline: true};
-
   useEffect(() => {
     setValue('title', title);
     setValue('description', description);
@@ -39,7 +34,8 @@ const TicketForm = ({mode, config, backTo}) => {
 
 
   const onSubmit = (evt) => {
-    evt.tags = tagList;
+    evt.points = Object.entries(pointsList).filter(([_, point]) => point.label);
+    console.log(evt);
     if (mode === 'edit') dispatch(updateTask({...config, ...evt}));
     else dispatch(addTask(evt));
 
@@ -62,12 +58,10 @@ const TicketForm = ({mode, config, backTo}) => {
           <Input register={register('description' )}
             config={descriptionFieldConfig}
             className={generalStyles.modal__description}/>
-          <TagOverview className={styles.modal__overview} tagList={tagList} setTagList={setTagList}/>
-          <Multiselect
-            register={register('tags' )}
-            className={styles.modal__multiselect}
-            tagList={tagList}
-            setTagList={setTagList}/>
+          <div className={generalStyles.check_list}>
+            <CheckList points={pointsList} setPoints={setPointsList}/>
+          </div>
+
           <Button disabled={isSubmitDisabled} type="submit" >Сохранить</Button>
         </form>
       </div>

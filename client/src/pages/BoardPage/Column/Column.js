@@ -11,7 +11,7 @@ const emptyTask = {
   id: 'task-0',
   name: '',
   description: '',
-  tags: [],
+  points: [],
   hasComment: false,
   hasDescription: false,
 };

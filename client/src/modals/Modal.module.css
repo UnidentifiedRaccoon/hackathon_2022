@@ -1,7 +1,7 @@
 .modal {
     box-sizing: border-box;
     position: fixed;
-    top: 25vh;
+    top: 15vh;
     left: calc(50% - 250px);
     z-index: 101;
     width: 500px;
@@ -52,6 +52,10 @@
 
 .modal__error {
     color: #d96c6c
+}
+
+.check_list {
+    margin-bottom: 10px;
 }
 
 

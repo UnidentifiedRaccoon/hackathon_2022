@@ -2,36 +2,63 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: var(--button-bg-color-yellow);
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2em;
+    background-color: var(--button-bg);
     border: none;
-    padding: 12px 0 14px;
-    width: 100%;
-    border-radius: 11px;
+    padding: 10px 15px 10px;
+    margin: 0 auto;
+    border-radius: 30px;
 }
 
-.button:hover,
-.button:focus {
-    background-color: #f3c400;
+.button:hover {
+    background-color: var(--button-bg--hover);
 }
 
 .button:disabled,
 .button:disabled:hover,
 .button:disabled:focus {
-    background-color: #eceae6;
+    background-color: var(--button-bg--disabled);
 }
 
-.button_add .button__before {
+.cross {
+    padding-top: 1px;
     display: block;
-    position: relative;
     margin-right: 0.3rem;
-
-    width: 1rem;
-    height: 1rem;
-    background-image: url('./img/cross.svg');
-    background-repeat: no-repeat;
-    background-position: 70% center;
 }
 
-.button_small {
-    width: 150px;
+.button_empty {
+    background-color: transparent;
+    color: var(--button-bg);
 }
+
+.button_empty path {
+    stroke: var(--button-bg);
+}
+
+.button_empty:hover {
+    background-color: transparent;
+    color: var(--button-bg--hover);
+    /*outline: 2px solid var(--button-bg--hover);*/
+}
+
+.button_empty:hover path {
+    stroke: var(--button-bg--hover);
+}
+
+.button_empty:disabled,
+.button_empty:disabled:hover,
+.button_empty:disabled:focus {
+    background-color: transparent;
+    color: var(--button-bg--disabled);
+    /*outline: none;*/
+}
+
+.button_empty:disabled path,
+.button_empty:disabled:hover path,
+.button_empty:disabled:focus path{
+    stroke: var(--button-bg--disabled);
+}
+
+

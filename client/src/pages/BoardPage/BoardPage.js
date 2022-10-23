@@ -5,7 +5,6 @@ import {useEffect} from 'react';
 import {boardSelector, fetchBoard} from '../../store/board';
 
 import styles from './BoardPage.module.css';
-import Filter from './Filter/Filter';
 import ColumnGroup from './ColumnGroup/ColumnGroup';
 
 const BoardPage = () => {
@@ -18,7 +17,6 @@ const BoardPage = () => {
     <main className={styles.board}>
       <div className="center">
         <h1 className="visually-hidden">Доска задач</h1>
-        <Filter/>
         <ColumnGroup boardData={boardData}/>
       </div>
     </main>
