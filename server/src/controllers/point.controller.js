@@ -7,7 +7,7 @@ const point = {
         getPointsByTaskId(req.params.task_id, (err, rows) => {
             if (err) {
                 console.error(err);
-                return res.send(createError("Can not get this tasks"));
+                return res.send(createError("Can not get this points"));
             }
             res.send(JSON.stringify(rows));
         });
