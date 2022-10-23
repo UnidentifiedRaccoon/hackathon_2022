@@ -1,7 +1,7 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 
 export const loginUser = createAsyncThunk(
-  'user/setUser', async(evt,{dispatch}) => {
+  'user/setUser', async({evt, navigate},{dispatch}) => {
     const response = await fetch('http://507215.msk-kvm.ru/auth', {
       method: 'POST',
       headers: {
@@ -9,25 +9,37 @@ export const loginUser = createAsyncThunk(
       },
       body: JSON.stringify(evt),
     });
-    const json = await response.json();
-    dispatch(userSlice.actions.setUser({ data: json.data}));
+    if (response.ok) {
+      const json = await response.json();
+      dispatch(userSlice.actions.setUser(json.data));
+      navigate('/');
+    }
   }
 );
 
 export const regUser = createAsyncThunk(
-  'user/regUser', async(evt,{dispatch}) => {
+  'user/regUser', async({evt, navigate},{dispatch}) => {
+    const event = {
+      password: evt.password,
+      email: evt.email,
+      first_name: evt.firstname,
+      last_name: evt.surname,
+    };
     const response = await fetch('http://507215.msk-kvm.ru/reg', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(evt),
+      body: JSON.stringify(event),
     });
-
-    const json = await response.json();
-    dispatch(userSlice.actions.setUser({json}));
+    if (response.ok) {
+      const json = await response.json();
+      dispatch(userSlice.actions.setUser(json.data));
+      navigate('/');
+    }
   }
 );
+
 
 const initialState = {
   name: null,
@@ -44,8 +56,9 @@ const userSlice = createSlice({
   reducers: {
     setUser: (state, action) => {
       state.name = action.payload.first_name;
-      state.name = action.payload.last_name;
+      state.surname = action.payload.last_name;
       state.token = action.payload.token;
+      state.email = action.payload.email;
       state.id = action.payload.id;
     },
     removeUser: (state, _) => {
@@ -57,5 +70,5 @@ const userSlice = createSlice({
   },
 });
 
-export const {set, remove} = userSlice.actions;
-export default userSlice;
+export const {setUser, removeUser} = userSlice.actions;
+export default userSlice.reducer;

@@ -4,6 +4,7 @@ import {useEffect} from 'react';
 
 import {boardSelector, fetchBoard} from '../../store/board';
 
+
 import styles from './BoardPage.module.css';
 import ColumnGroup from './ColumnGroup/ColumnGroup';
 

@@ -1,14 +1,22 @@
 import {useForm} from 'react-hook-form';
 
+import {useNavigate} from 'react-router-dom';
+
+import {useDispatch} from 'react-redux';
+
 import Input from '../../components/Ui/Input/Input';
 import UserEntranceForm from '../../components/UserEntranceForm/UserEntranceForm';
 
+import {regUser} from '../../store/user';
+
 import styles from './SignUpPage.module.css';
 const SignUpPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const { register, handleSubmit} = useForm();
   const onSubmit = (evt) => {
-    // eslint-disable-next-line no-console
-    console.log(evt);
+    dispatch(regUser({evt, navigate}));
   };
   const firstnameFieldConfig = {placeholder: 'имя', autoFocus: true};
   const surnameFieldConfig = {placeholder: 'фамилия'};
