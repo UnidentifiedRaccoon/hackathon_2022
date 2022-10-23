@@ -1,3 +1,5 @@
+const cors = require('cors');
+
 const { signUp, signIn } = require("./controllers/auth.controller");
 const { getUsers } = require("./controllers/user.controller");
 const { checkAuth } = require('./util/checkAuth');
@@ -6,6 +8,8 @@ const { getTaskById, getAllTasks, createTask, deleteTask } = require("./controll
 const { getPointsByTaskId, createPoint, updatePoint } = require("./controllers/point.controller");
 
 const router = (app) => {
+    app.use(cors());
+
     app.post('/reg', signUp);
     app.post('/auth', signIn);
     
