@@ -2,22 +2,37 @@ import styles from './Input.module.css';
 
 // You can configure:
 // const {name, placeholder, value, type, disabled, readOnly, multiline} = config;
-const Input = ({children, className = '', config, register, onClick, onChange}) => {
+const Input = ({children, className = '', config, register, onClick, onChange, onBlur}) => {
   const {multiline, ...rest} = config;
+  const onChangeHandler = (event) => {
+    if (onChange)  onChange(event);
+    register.onChange(event);
+  };
+
+  const onBlurHandler = (event) => {
+    if (onBlur)  {
+      onBlur(event);
+    }
+    register.onBlur(event);
+  };
+
 
   const customInput = Boolean(multiline) ?
     <textarea className={`${styles.input__field} ${styles.input__area}`}
-      onChange={onChange}
       {...rest}
       {...register}
       onClick={onClick}
+      onBlur={onBlurHandler}
+      onChange={onChangeHandler}
+
     />
     :
     <input className={`${styles.input__field}`}
-      onChange={onChange}
       {...rest}
       {...register}
       onClick={onClick}
+      onChange={onChangeHandler}
+      onBlur={onBlurHandler}
     />;
 
   return (

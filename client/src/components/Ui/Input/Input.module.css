@@ -47,6 +47,7 @@
 .input__field:disabled:hover,
 .input__field:disabled:hover {
     outline: none;
+    border-color: var(--input-border-color)
 }
 
 
