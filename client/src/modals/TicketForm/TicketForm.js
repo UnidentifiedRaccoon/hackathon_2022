@@ -49,8 +49,6 @@ const TicketForm = ({mode, config, backTo}) => {
   const onSubmit = (evt) => {
     evt.points = Object.entries(pointsList).filter(([_, point]) => point.label);
     evt.deadline = new Date(evt.deadline).getTime();
-    // eslint-disable-next-line no-console
-    console.log(evt);
     if (mode === 'edit') dispatch(updateTask({...config, ...evt}));
     else dispatch(addTask(evt));
     navigate(backTo);
@@ -76,7 +74,7 @@ const TicketForm = ({mode, config, backTo}) => {
               className={generalStyles.modal__half}/>
             <Suggest register={register} setValue={setValue}/>
           </div>
-          <Input register={register('deadline' )}
+          <Input register={register('deadline', { required: 'Необходимо заполнить' } )}
             config={timeFieldConfig}/>
           <div className={generalStyles.check_list}>
             <CheckList points={pointsList} setPoints={setPointsList}/>

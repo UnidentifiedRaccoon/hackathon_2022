@@ -23,21 +23,24 @@ const LoginPage = () => {
   const passwordFieldConfig = {placeholder: 'пароль', type: 'password'};
   return (
     <main className={styles.login}>
-      <div className="center">
-        <UserEntranceForm title="Вход" submitBtnText="Войти"
-          onSubmit={handleSubmit(onSubmit)}
-          linkTo="/sign-up"
-          linkText="Еще не с нами? Зарегистрируйтесь">
-          <Input config={loginFieldConfig}
-            register={register('email', { required: 'Необходимо заполнить' })}
-            className={styles.input}
-          />
-          <Input config={passwordFieldConfig}
-            register={register('password', { required: 'Необходимо заполнить' })}
-            className={styles.input}
-          />
-        </UserEntranceForm>
+      <div className={styles.linkToApk} >
+        <a href="https://drive.google.com/file/d/1f5dLZMpkOoNv4Y2JpMsQn9pBfzzdFi1d/view">
+          Ссылка
+        </a>
       </div>
+      <UserEntranceForm title="Вход" submitBtnText="Войти"
+        onSubmit={handleSubmit(onSubmit)}
+        linkTo="/sign-up"
+        linkText="Еще не с нами? Зарегистрируйтесь">
+        <Input config={loginFieldConfig}
+          register={register('email', { required: 'Необходимо заполнить' })}
+          className={styles.input}
+        />
+        <Input config={passwordFieldConfig}
+          register={register('password', { required: 'Необходимо заполнить' })}
+          className={styles.input}
+        />
+      </UserEntranceForm>
     </main>
   );
 };

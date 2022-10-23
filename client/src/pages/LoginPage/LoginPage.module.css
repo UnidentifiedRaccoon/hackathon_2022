@@ -6,3 +6,9 @@
     color: var(--title-color);
     font-weight: 500;
 }
+
+.linkToApk {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+}
