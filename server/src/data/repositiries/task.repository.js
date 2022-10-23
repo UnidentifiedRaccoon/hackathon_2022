@@ -14,7 +14,8 @@ const createTaskQuery = `
         deadline,
         date_created,
         creator_id
-    ) VALUES (?, ?, ?, ?, ?, ?, ?);`;
+    ) VALUES (?, ?, ?, ?, ?, ?, ?)
+    RETURNING *;`;
 
 
 const getTasks = (callback) => {
@@ -64,8 +65,8 @@ const createTask = (creator_id, task, callback) => {
         new Date().getTime(),
         creator_id
     ];
-    connection.run(createTaskQuery, options, (err) => {
-        callback(err);
+    connection.get(createTaskQuery, options, (err, task) => {
+        callback(err, task);
     });
 }
 
