@@ -1,5 +1,6 @@
 const { connection } = require("../connection");
 
+const getUsersQuery = `SELECT id, email, first_name, last_name FROM users`;
 const getUserByEmailQuery = `SELECT * FROM users WHERE email = ?`;
 const createUserQuery = `
     INSERT INTO users(
@@ -11,6 +12,12 @@ const createUserQuery = `
     VALUES (?, ?, ?, ?)
     RETURNING *;
 `;
+
+const getUsers = (callback) => {
+    connection.all(getUsersQuery, (err, rows) => {
+        callback(err, rows);
+    });
+}
 
 const getUserByEmail = (email, callback) => {
     connection.get(getUserByEmailQuery, [email], (err, row) => {
@@ -28,4 +35,5 @@ const createUser = (user, callback) => {
 module.exports = {
     getUserByEmail,
     createUser,
+    getUsers,
 };
