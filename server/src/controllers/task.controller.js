@@ -35,7 +35,7 @@ const task = {
     },
 
     createTask(req, res) {
-        const token = req.get('authorization').split(' ')[1];
+        const token = req.header('authorization').split(' ')[1];
         const currentUserId = getPayload(token).id;
 
         createTask(currentUserId, req.body, (err, task) => {
