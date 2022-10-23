@@ -87,7 +87,7 @@ const TicketForm = () => {
       className={styles.form__tags}/>);
 
   const AddCommentBtn = mode === 'edit' &&
-      <LinkButton mode="add" className={styles.form__add} to="comment">
+      <LinkButton mode="add" color="empty" className={styles.form__add} to="comment">
         Добавить комментарий
       </LinkButton>;
 

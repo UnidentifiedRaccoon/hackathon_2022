@@ -30,3 +30,44 @@
 .link_small {
     width: 150px;
 }
+
+.cross {
+    padding-top: 1px;
+    display: block;
+    margin-right: 0.3rem;
+}
+
+.link_empty {
+    background-color: transparent;
+    color: var(--button-bg);
+}
+
+.link_empty path {
+    stroke: var(--button-bg);
+}
+
+.link_empty:hover {
+    background-color: transparent;
+    color: var(--button-bg--hover);
+    /*outline: 2px solid var(--button-bg--hover);*/
+}
+
+.link_empty:hover path {
+    stroke: var(--button-bg--hover);
+}
+
+.link_empty:disabled,
+.link_empty:disabled:hover,
+.link_empty:disabled:focus {
+    background-color: transparent;
+    color: var(--button-bg--disabled);
+    /*outline: none;*/
+}
+
+.link_empty:disabled path,
+.link_empty:disabled:hover path,
+.link_empty:disabled:focus path{
+    stroke: var(--button-bg--disabled);
+}
+
+

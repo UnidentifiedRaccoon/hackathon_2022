@@ -1,5 +1,9 @@
 import {Link} from 'react-router-dom';
 
+import {useDispatch} from 'react-redux';
+
+import {removeUser} from '../../store/user';
+
 import styles from './Layout.module.css';
 
 import logo from './telecom.png';
@@ -7,6 +11,10 @@ import Leave from './Leave/Leave';
 import Settings from './Settings/Settings';
 
 const Layout = (props) => {
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(removeUser());
+  };
   const {children} = props;
   return (
     <>
@@ -22,7 +30,7 @@ const Layout = (props) => {
             <Link to="settings">
               <Settings size="30"/>
             </Link>
-            <Link to="login">
+            <Link to="login"  onClick={logoutHandler}>
               <Leave size="25"/>
             </Link>
           </div>
