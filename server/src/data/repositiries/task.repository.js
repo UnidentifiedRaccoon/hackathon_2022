@@ -39,7 +39,15 @@ const getTasks = (callback) => {
 }
     
 const getTaskById = (id, callback) => {
-    connection.get(selectTaskByIdQuery, [id], callback);
+    connection.get(selectTaskByIdQuery, [id], (err, task) => {
+        if (err || !task) { return callback(err); }
+        
+        getPointsByTaskId(task.id, (err, points) => {
+            if (err) { return callback(err); }
+            task.points = points;
+            callback(err, task);
+        });
+    });
 }
 
 const deleteTask = (id, callback) => {
