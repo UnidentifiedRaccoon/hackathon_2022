@@ -38,12 +38,12 @@ const task = {
         const token = req.get('authorization').split(' ')[1];
         const currentUserId = getPayload(token).id;
 
-        createTask(currentUserId, req.body, err => {
+        createTask(currentUserId, req.body, (err, task) => {
             if (err) {
                 res.writeHead(500);
                 return res.end(createError('Can not create task'));
             }
-            return res.end(createSuceess('Task was successfully created'));
+            return res.end(createSuceess('Task was successfully created', task));
         });
     }
 };
