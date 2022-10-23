@@ -10,9 +10,10 @@ const createTaskQuery = `
         description,
         executor_id,
         priority,
-        deadline
-        date_created
-    ) VALUES (?, ?, ?, ?, ?, ?);`;
+        deadline,
+        date_created,
+        creator_id
+    ) VALUES (?, ?, ?, ?, ?, ?, ?);`;
 
 
 const getTasks = (callback) => {
@@ -39,8 +40,16 @@ const deleteTask = (id, callback) => {
     connection.run(deleteTaskByIdQuery, [id], callback);
 }
 
-const createTask = (task, callback) => {
-    const options = [task.title, task.description, task.executor_id, task.priority, task.deadline, new Date().getTime()];
+const createTask = (creator_id, task, callback) => {
+    const options = [
+        task.title,
+        task.description,
+        task.executor_id,
+        task.priority,
+        task.deadline,
+        new Date().getTime(),
+        creator_id
+    ];
     connection.run(createTaskQuery, options, (err) => {
         callback(err);
     });
