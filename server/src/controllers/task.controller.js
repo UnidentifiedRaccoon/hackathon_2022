@@ -1,6 +1,7 @@
 const { createError } = require("../util/error")
 const { createSuceess } = require("../util/success")
 const { getTasks, getTaskById, deleteTask, createTask } = require("../data/repositiries/task.repository");
+const { getPayload } = require('../util/jwt');
 
 const task = {
     getAllTasks(_, res) {
@@ -34,7 +35,10 @@ const task = {
     },
 
     createTask(req, res) {
-        createTask(req.body, err => {
+        const token = req.get('authorization').split(' ')[1];
+        const currentUserId = getPayload(token).id;
+
+        createTask(currentUserId, req.body, err => {
             if (err) {
                 res.writeHead(500);
                 return res.end(createError('Can not create task'));
