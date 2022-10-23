@@ -55,11 +55,14 @@ const create_task_table = `
 `;
 
 const testTasks = [
-    "TEST TITLE!!!",
-    "Description!!",
-    3,
-    "To do",
-    new Date().getTime()
+    "Did it please",
+    "Ladno....!",
+    1,
+    "Todo",
+    new Date().getTime(),
+    2,
+    1666521983890,
+    3
 ]
 
 const insert_task_table = `
@@ -68,9 +71,12 @@ const insert_task_table = `
         description,
         priority,
         column_title,
-        date_created
+        date_created,
+        executor_id,
+        deadline,
+        creator_id
     )
-    VALUES${createInsertionTpl(testTasks, 5)};`;
+    VALUES${createInsertionTpl(testTasks, 8)};`;
 
 connection.run(create_task_table, (err) => {
     if (err) { return console.error(err); }
@@ -95,16 +101,19 @@ const create_point_table = `
 `;
 
 const testPoints = [
-    "LABEL!!!!!!!!!!",
+    "Point!",
+    1,
     1
+
 ]
 
 
 const insert_point_table = `
     INSERT INTO points(
         label,
-        task_id
-    ) VALUES${createInsertionTpl(testPoints, 2)};`;
+        task_id,
+        done
+    ) VALUES${createInsertionTpl(testPoints, 3)};`;
 
 connection.run(create_point_table, (err) => {
         if (err) { return console.error(err); }
