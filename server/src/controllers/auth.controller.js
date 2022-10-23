@@ -27,7 +27,7 @@ const auth = {
                     }
 
                     res.writeHead(200, { 'Authorization' : `Bearer ${token}` });
-                    return res.end(createSuceess('User was successfully created', { ...user, password: undefined }));
+                    return res.end(createSuceess('User was successfully created', { ...user, password: undefined, token }));
                 });
             });
         });
@@ -46,7 +46,7 @@ const auth = {
                     }
 
                     res.writeHead(200, { 'Authorization' : `Bearer ${token}` });
-                    return res.end(createSuceess('Successfully authorized', { ...user, password: undefined }));
+                    return res.end(createSuceess('Successfully authorized', { ...user, password: undefined, token }));
                 });
             }
 
