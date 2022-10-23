@@ -15,12 +15,12 @@ const task = {
     },
 
     getTaskById(req, res) {
-        getTaskById(req.params.id, (err, rows) => {
-            if (err || !rows || !rows.length) {
+        getTaskById(req.params.id, (err, task) => {
+            if (err || !task) {
                 res.writeHead(500);
                 return res.end(createError('Can not get this task'));
             }
-            res.end(JSON.stringify(rows));
+            res.end(JSON.stringify(task));
         });
     },
 
