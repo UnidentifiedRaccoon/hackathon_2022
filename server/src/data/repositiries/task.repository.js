@@ -11,11 +11,24 @@ const createTaskQuery = `
         executor_id,
         priority,
         deadline
-    ) VALUES (?, ?, ?, ?, ?);`;
+        date_created
+    ) VALUES (?, ?, ?, ?, ?, ?);`;
 
 
 const getTasks = (callback) => {
-    connection.all(selectAllTasksQuery, callback);
+    connection.all(selectAllTasksQuery, (err, rows) => {
+        let tasksLoaded = 0;
+
+        rows.forEach(r => {
+            getPoints(r.id, (err, points) => {
+                tasksLoaded++;
+                r.points = points;
+            });
+            if (tasksLoaded === rows.length) {
+                callback(err, rows);
+            }
+        })
+    });
 }
     
 const getTaskById = (id, callback) => {
@@ -27,7 +40,7 @@ const deleteTask = (id, callback) => {
 }
 
 const createTask = (task, callback) => {
-    const options = [task.title, task.description, task.executor_id, task.priority, task.deadline];
+    const options = [task.title, task.description, task.executor_id, task.priority, task.deadline, new Date().getTime()];
     connection.run(createTaskQuery, options, (err) => {
         callback(err);
     });
@@ -35,7 +48,7 @@ const createTask = (task, callback) => {
 
 module.exports = {
     getTasks,
-    getTaskById,
+    getTaskById, 
     deleteTask,
     createTask
 };

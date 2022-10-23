@@ -47,6 +47,7 @@ const create_task_table = `
 
         date_created INTEGER,
         deadline INTEGER,
+        column_title TEXT,
 
         FOREIGN KEY (creator_id) REFERENCES users(id),
         FOREIGN KEY (executor_id) REFERENCES users(id)
@@ -54,14 +55,22 @@ const create_task_table = `
 `;
 
 const testTasks = [
-    "TEST TITLE!!!"
+    "TEST TITLE!!!",
+    "Description!!",
+    3,
+    "To do",
+    new Date().getTime()
 ]
 
 const insert_task_table = `
     INSERT INTO tasks(
-        title
+        title,
+        description,
+        priority,
+        column_title,
+        date_created
     )
-    VALUES${createInsertionTpl(testTasks, 1)};`;
+    VALUES${createInsertionTpl(testTasks, 5)};`;
 
 connection.run(create_task_table, (err) => {
     if (err) { return console.error(err); }
@@ -72,3 +81,35 @@ connection.run(create_task_table, (err) => {
         console.log('Successfully created tasks');
     })
 });
+
+
+const create_point_table = `
+        CREATE TABLE IF NOT EXISTS points (
+            id INTEGER PRIMARY KEY,
+            label TEXT,
+            task_id INTEGER,
+            done BOOLEAN DEFAULT 0 NOT NULL CHECK (done IN (0, 1)),
+
+            FOREIGN KEY (task_id) REFERENCES tasks(id)
+        )
+`;
+
+const testPoints = [
+    "LABEL!!!!!!!!!!",
+    1
+]
+
+
+const insert_point_table = `
+    INSERT INTO points(
+        label,
+        task_id
+    ) VALUES${createInsertionTpl(testPoints, 2)};`;
+
+connection.run(create_point_table, (err) => {
+        if (err) { return console.error(err); }
+        connection.run(insert_point_table, testPoints, err => {
+            if (err) { return console.error('Error:', err); }
+            console.log('Successfully created points');
+        })
+    });
